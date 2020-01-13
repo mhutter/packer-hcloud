@@ -1,0 +1,18 @@
+= packer hcloud
+
+Base https://www.packer.io/[Packer] template for machines on https://www.hetzner.com/cloud[Hetzner Cloud].
+
+
+== Templates
+
+ubuntu:: Ubuntu 18.04 LTS
+
+
+== License
+
+MIT (see link:LICENSE[LICENSE])
+
+---
+> https://hutter.io/[Manuel Hutter] -
+> GitHub https://github.com/mhutter[@mhutter] -
+> Twitter https://twitter.com/dratir[@dratir]

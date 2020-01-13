@@ -1,0 +1,36 @@
+{
+  "variables": {
+    "hcloud_token": "{{env `HCLOUD_TOKEN`}}"
+  },
+  "sensitive-variables": ["hcloud_token"],
+  "builders": [{
+    "type": "hcloud",
+    "token": "{{user `hcloud_token`}}",
+    "image": "ubuntu-18.04",
+    "location": "fsn1",
+    "server_type": "cx11",
+    "ssh_username": "root",
+    "snapshot_name": "ubuntu",
+    "snapshot_labels": {
+      "name": "ubuntu"
+    }
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "environment_vars": [
+      "DEBIAN_FRONTEND=noninteractive"
+    ],
+    "scripts": [
+      "provision/00_packages.sh",
+      "provision/10_ntp.sh",
+      "provision/20_sshd.sh",
+      "provision/99_sysprep.sh"
+    ]
+  }],
+  "post-processors": [
+    {
+      "type": "manifest",
+      "output": "manifests/ubuntu.json"
+    }
+  ]
+}
